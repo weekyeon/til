@@ -56,7 +56,7 @@
   * 인스턴스(instance) : 클래스로부터 만들어진 객체
   * 인스턴스화 : 클래스로부터 객체를 만드는 과정
 
-  ![객체 생성](https://github.com/weekyeon/TIL/Java/img/java-class-img1.png)
+  ![객체 생성](https://github.com/weekyeon/til/blob/master/Java/img/java-class-img1.png)
 
 * 구성요소
 
@@ -152,7 +152,7 @@ public class ClassName{
 
 * 메소드 선언
 
-  ![메소드 선언](https://github.com/weekyeon/TIL/Java/img/java-class-img2.png)
+  ![메소드 선언](https://github.com/weekyeon/til/blob/master/Java/img/java-class-img2.png)
 
   * 리턴 타입
 
@@ -188,7 +188,7 @@ public class ClassName{
     * 클래스 내에 같은 이름의 메소드를 여러 개 선언하는 것
     * 메소드 오버로딩 조건 : 매개 변수 타입, 개수, 순서 중 하나가 달라야 함
 
-    ![메소드 선언](https://github.com/weekyeon/TIL/Java/img/java-class-img3.png)
+    ![메소드 오버로딩](https://github.com/weekyeon/til/blob/master/Java/img/java-class-img3.png)
 
 
 
