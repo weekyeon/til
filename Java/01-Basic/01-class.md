@@ -7,6 +7,7 @@
 * 구성요소(필드, 생성자, 메소드)
 * this
 * static
+* 싱글톤 패턴 (Singleton Pattern)
 * final 필드
 * 상수(static final)
 * 접근제한자
@@ -304,6 +305,54 @@ public class ClassName{
 
 
 
+### 싱글톤 패턴 (Singleton Pattern)
+
+* 전체 프로그램에서 단 하나의 객체만 만들도록 보장해야 하는 경우 사용하는 디자인 패턴
+* 싱글톤을 만들기 위해서는 클래스 외부에서 new 연산자로 생성자를 호출할 수 없도록 막아야 함
+  * 생성자를 호출한 만큼 객체가 생성되기 때문
+  * 생성자 앞에 private 접근제한자 지정
+* 클래스 내부에서는 new 연산자로 생성자 호출 가능
+
+```java
+public class Singleton{
+    
+    //1. 정적 필드 선언
+    private static Singleton singleton = new Singleton;
+    
+    //2. 생성자
+    private Singleton(){
+        
+    }
+    
+    //3. 정적 메소드
+    //외부에서 호출 가능한 정적 메소드 선언 후
+    // 정적 필드에서 참조하고 있는 자신의 객체 리턴
+    static Singleton getInstance(){
+        return singleton;
+    }
+}
+```
+
+```java
+public class SingletonEx{
+    public static void main(String[] args){
+     
+        //외부에서 싱글톤 객체 호출하기
+        
+        //컴파일 오류 O
+        Singleton obj1 = new Singleton();
+        Singleton obj2 = new Singleton();
+        
+        //컴파일 오류 X
+        Singleton obj3 = Singleton.getInstance();
+        Singleton obj4 = Singleton.getInstance();
+        //obj3과 obj4는 같은 객체를 참조함
+    }
+}
+```
+
+
+
 ### final 필드
 
 * **초기값 저장 시 그 값이 최종적인 값이 되어 프로그램 실행 도중 수정 불가한 값**
@@ -375,8 +424,6 @@ public class ClassName{
   * 객체 외부에서 객체의 필드값을 사용하기 부적절할 때 Getter 메소드로 필드값 가공하여 외부로 전달
 * Setter
   * 외부에서 데이터에 접근할 수 없도록 막고, 메소드는 공개하여 외부에서 메소드를 통해 데이터에 접근하도록 유도할 때 사용하는 메소드
-
-
 
 
 
