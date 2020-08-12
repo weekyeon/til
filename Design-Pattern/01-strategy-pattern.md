@@ -1,6 +1,6 @@
 # 스트래티지 패턴
 
-* [가람, 자바 디자인 패턴의 이해 - Gof Design Pattern]([https://www.inflearn.com/course/%EC%9E%90%EB%B0%94-%EB%94%94%EC%9E%90%EC%9D%B8-%ED%8C%A8%ED%84%B4](https://www.inflearn.com/course/자바-디자인-패턴))
+* [가람, 자바 디자인 패턴의 이해 - Gof Design Pattern](https://www.inflearn.com/course/자바-디자인-패턴/dashboard)
 * [Source Repo](https://github.com/weekyeon/design-pattern)
 
 
@@ -17,8 +17,7 @@
 ### 인터페이스(Interface)
 
 * 기능에 대한 선언과 구현 분리
-
-* * 기능 A에 대해 선언하는 인터페이스와 기능 A의 구현을 분리
+  * 기능 A에 대해 선언하는 인터페이스와 기능 A의 구현을 분리
   * implement를 사용하여 기능 구현
 * 기능을 사용하는 통로
   * 기능을 구현한 클래스의 메소드를 사용할 수 있도록 하는 접점 역할
@@ -32,7 +31,7 @@ public interface InterfaceEx{
 
 ```java
 public class InterfaceExImpl implements InterfaceEx{
- 	//기능 구현   
+    //기능 구현   
     @Override
     public void funcA(){
         System.out.println("Hello World!")
@@ -84,14 +83,15 @@ public class Main{
 
 ### 스트래티지 패턴 (Strategy Pattern)
 
-* 여러 알고리즘을 하나의 **추상적인 접근점(Interface)**을 만들어 접근점에서 서로 교환 가능하도록 하는 패턴
+* 여러 알고리즘을 하나의 **추상적인 접근점**을 만들어 접근점에서 서로 교환 가능하도록 하는 패턴
 
 * 기본 설계
 
   * 전략을 사용하는 Client가 있고, 이 Client는 전략을 하나 소유함
   * Strategy 인터페이스를 구현한 각각의 Strategy A, B, C를 Client가 사용할 수 있음
   
-![기본 설계](https://github.com/weekyeon/til/blob/master/Design-Parttern/img/strategy1.png)
+
+![기본 설계](https://github.com/weekyeon/til/blob/master/Design-Pattern/img/strategy1.png)
 
 
 
@@ -100,7 +100,7 @@ public class Main{
 * 신작 게임의 캐릭터와 무기 구현
 * 무기 종류 : 칼, 검
 
-![설계](https://github.com/weekyeon/til/blob/master/Design-Parttern/img/strategy2.png)
+![설계](https://github.com/weekyeon/til/blob/master/Design-Pattern/img/strategy2.png)
 
 * Weapon
   * Interface
