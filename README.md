@@ -25,3 +25,6 @@
 #### :pushpin: Design Pattern
 
 * [스트래티지 패턴 (Strategy Pattern)](https://github.com/weekyeon/til/blob/master/Design-Pattern/01-strategy-pattern.md)
+* [어댑터 패턴 (Adapter Pattern)](https://github.com/weekyeon/til/blob/master/Design-Pattern/02-adapter-pattern.md)
+* [템플릿 메소드 패턴 (Template Method Pattern)](https://github.com/weekyeon/til/blob/master/Design-Pattern/03-template-mathod-pattern.md)
+* [팩토리 메소드 (Factory Method Pattern)](https://github.com/weekyeon/til/blob/master/Design-Pattern/04-template-factory-pattern.md)
