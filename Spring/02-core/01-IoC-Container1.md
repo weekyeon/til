@@ -420,7 +420,7 @@
 
   * BeanFactory가 자신 안에 등록되어 있는 BeanPostProcessor 타입의 빈을 찾음
     * **이 중, AutowiredAnnotationBeanPostProcessor가 빈으로 등록되어 있는 것**
-  * BeanPostProcessor가 다른 일반적인 빈들에게 AutowiredAnnotationBeanPostProcessor에 있는 어노테이션을 적용하는 로직 수행(아주 마법같은일..)
+  * BeanPostProcessor가 다른 일반적인 빈들에게 AutowiredAnnotationBeanPostProcessor에 있는 애노테이션을 적용하는 로직 수행(아주 마법같은일..)
 
   ```java
   @Component
@@ -467,3 +467,198 @@ On shutdown of a bean factory, the following lifecycle methods apply:
 ```
 
 
+
+### @Component와 @ComponentScan
+
+* @ComponentScan **주요 기능**
+
+  * 스캔할 위치를 선정함
+    * 어디부터 어디까지
+  * Filter
+    * 어떤 애노테이션을 스캔할지 또는 하지 않을지
+
+* @ComponentScan **대상**
+
+  * @Component
+    * @Repository
+    * @Service
+    * @Controller
+    * @Configuration 등
+
+* @ComponentScan 동작 원리
+
+  * @ComponentScan은 스캔할 패키지와 애노테이션에 대한 정보
+  * 실제 스캐닝은 [ConfigurationClassPostProcessor](https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/context/annotation/ConfigurationClassPostProcessor.html)라는 [BeanFactoryPostProcessor](https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/beans/factory/config/BeanFactoryPostProcessor.html)에 의해 처리됨
+    * BeanFactoryPostProcessor
+      * 우리가 직접 등록하는 빈들을 포함한 다른 빈들을 모두 등록하기 전에 컴포넌트 스캔을 해서 빈으로 등록해줌
+
+* 펑션을 사용한 빈 등록하는 방법
+
+  ```java
+  public static void main(String[] args) {
+   new SpringApplicationBuilder()
+   .sources(Demospring51Application.class)
+   .initializers((ApplicationContextInitializer<GenericApplicationContext>)
+  applicationContext -> {
+   applicationContext.registerBean(MyBean.class);
+   })
+   .run(args);
+   }
+  ```
+
+  * ApplicationContext의 싱글톤 스코프 빈들은 초기에 다 생성함
+    * 등록해야 할 빈이 많은 경우 초기 구동 시간이 오래 걸림
+    * 하지만, 애플리케이션 구동 초기 1번만 구동 시간을 잡아먹음
+  * 구동 시간에 예민하다면 펑션을 사용한 빈 등록 방법 사용 고려
+    * Spring 5부터 지원
+    * Application Initialize 때 컴포넌트 스캔 패키지 외부의 빈을 직접 등록 가능
+    * 리플렉션과 프록시 기법을 사용하지 않아 성능(애플리케이션 구동 시간) 상의 이점이 있음
+    * <u>@ComponentScan을 버리고 이 방법을 쓰면 더 불편하지 않을까?</u>
+      * 이 방법은 @ComponentScan을 대체하는 방법이라기 보단, 직접 빈으로 등록하게 되는 빈들을 대체할 때 나쁘지 않을 것으로 생각
+
+
+
+### 빈의 스코프
+
+* ApplicationContext에 생성된 빈들은 전부 스코프가 있음 (Default : 싱글톤 스코프)
+
+* 스코프
+
+  * 싱글톤
+    * 애플리케이션 전반에 걸쳐서 해당 빈의 인스턴스가 오직 한 개
+    * 대부분의 상황에서는 싱글톤 스코프를 사용함
+
+  * 프로토타입
+    * 빈을 주입 받아올 때마다 새로운 빈 생성됨
+    * 짧은 생명주기를 가진 빈들을 주입 받을 때 고려해야 함
+    * Request, Session, WebSocket ...
+
+  ```java
+  @Component
+  public class Single {
+      @Autowired
+      Proto proto;
+  
+      public Proto getProto() {
+          return proto;
+      }
+  }
+  ```
+
+  ```java
+  @Component @Scope("prototype")
+  public class Proto {
+  }
+  ```
+
+  ```java
+  @Component
+  public class AppRunner implements ApplicationRunner {
+  
+      @Autowired
+      ApplicationContext ctx;
+  
+      @Override
+      public void run(ApplicationArguments args) throws Exception {
+  
+          System.out.println("Single ==========");
+          System.out.println(ctx.getBean(Single.class));
+          System.out.println(ctx.getBean(Single.class));
+          System.out.println(ctx.getBean(Single.class));
+  
+          System.out.println("Proto ==========");
+          System.out.println(ctx.getBean(Proto.class));
+          System.out.println(ctx.getBean(Proto.class));
+          System.out.println(ctx.getBean(Proto.class));
+  
+      }
+  }
+  ```
+
+  ```java
+  @SpringBootApplication
+  public class DemoApplication {
+      public static void main(String[] args) {
+          SpringApplication.run(DemoApplication.class, args);
+      }
+  }
+  ```
+
+  ```text
+  Single ==========
+  spring.framework.core.l05BeanScope.Single@44d70181
+  spring.framework.core.l05BeanScope.Single@44d70181
+  spring.framework.core.l05BeanScope.Single@44d70181
+  Proto ==========
+  spring.framework.core.l05BeanScope.Proto@742d4e15
+  spring.framework.core.l05BeanScope.Proto@88a8218
+  spring.framework.core.l05BeanScope.Proto@50b1f030
+  ```
+
+* 프로토타입 빈이 싱글톤 빈을 참조하면 **아무 문제 없음**
+
+* 싱글톤 빈이 프로토타입 빈을 참조하면
+
+  * 프로토타입 빈 업데이트 X
+    * 싱글톤 스코프의 빈은 인스턴스가 **한 번만** 만들어지기 때문에
+    * 한 번 설정된 프로토타입 스코프의 property가 변경되지 않고
+    * 항상 동일한 객체를 사용하게 됨
+
+  ```java
+  @Component
+  public class AppRunner implements ApplicationRunner {
+  
+      @Autowired
+      ApplicationContext ctx;
+  
+      @Override
+      public void run(ApplicationArguments args) throws Exception {
+          System.out.println("싱글톤 빈이 프로토타입 빈 참조 ==========");
+          System.out.println(ctx.getBean(Single.class).getProto());
+          System.out.println(ctx.getBean(Single.class).getProto());
+          System.out.println(ctx.getBean(Single.class).getProto());
+      }
+  }
+  ```
+
+  ```text
+  싱글톤 빈이 프로토타입 빈 참조 ==========
+  spring.framework.core.l05BeanScope.Proto@38600b
+  spring.framework.core.l05BeanScope.Proto@38600b
+  spring.framework.core.l05BeanScope.Proto@38600b
+  ```
+
+  * 업데이트 하기위한 방법
+    * `1` scoped-proxy
+    * `2` Object-Provider : 소스 코드에 침투
+    * `3` Provider (표준)
+  * scoped-proxy
+    * [프록시 패턴](https://en.wikipedia.org/wiki/Proxy_pattern)
+    * 프록시 모드를 설정해주는 것 (Default : 프록시 사용 X)
+    * `proxyMode = ScopedProxyMode.TARGET_CLASS`
+      * 클래스 기반의 **프록시로 Proto 빈을 감싸고, 다른 빈들은 프록시로 감싼 빈을 사용하게 하는 설정**
+      * 싱글톤 스코프가 프로토타입의 스코프를 가진 빈을 직접 참조하면 안되기 때문에 위의 설정이 필요함
+      * 그렇다면 왜 프록시를 거쳐야 할까?
+        * 직접 쓰게 되면 프로토타입 빈을 바꿔줄 수가 없음
+        * 하지만 프록시는 매번 새로 바꿔줄 수 있음
+
+  ```java
+  @Component
+  @Scope(value = "prototype", proxyMode = ScopedProxyMode.TARGET_CLASS)
+  public class Proto {
+      
+  }
+  ```
+
+  ```text
+  싱글톤 빈이 프로토타입 빈 참조 ==========
+  spring.framework.core.l05BeanScope.Proto@6826c41e
+  spring.framework.core.l05BeanScope.Proto@3003697
+  spring.framework.core.l05BeanScope.Proto@64d43929
+  ```
+
+* 싱글톤 객체 사용 시 주의할 점
+
+  * 프로퍼티가 공유됨
+    * 멀티스레드 환경에서 빈의 프로퍼티를 변경하려고 하기 때문에 스레드 세이프한 코딩 필요
+  * ApplicationContext 초기 구동 시 인스턴스 생성
