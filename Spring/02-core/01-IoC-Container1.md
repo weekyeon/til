@@ -117,12 +117,12 @@
            xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd">
         
         <bean id="bookService"
-              class="spring.framework.core.BookService">
+              class="spring.framework.core.l02ApplicationContext.BookService">
             <property name="bookRepository" ref="bookRepository" />
         </bean>
     
         <bean id="bookRepository"
-              class="spring.framework.core.BookRepository" />
+              class="spring.framework.core.l02ApplicationContext.BookRepository" />
     
     </beans>
     ```
@@ -432,7 +432,7 @@
     @Override
     public void run(ApplicationArguments args) throws Exception {
       AutowiredAnnotationBeanPostProcessor bean =
-        applicationContext.getBean(AutowiredAnnotationBeanPostProcessor.class)
+        applicationContext.getBean(AutowiredAnnotationBeanPostProcessor.class);
         System.out.println(bean);
     }
   }
