@@ -11,6 +11,7 @@
 ##### &nbsp; &nbsp; :open_file_folder: Basic
 
 * [클래스](https://github.com/weekyeon/til/blob/master/Java/01-Basic/01-class.md)
+* [상속](https://github.com/weekyeon/til/blob/master/Java/01-Basic/02-inheritance.md)
 
 
 
