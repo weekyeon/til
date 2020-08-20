@@ -9,7 +9,7 @@
 * final 클래스와 final 메소드
 * protected 접근 제한자
 * 타입 변환과 다형성
-* 추상 클래스
+* 추상 클래스 (Abstract)
 
 
 
@@ -59,8 +59,7 @@ public class ChildB extends Parent{
 
 ```java
 public class Main {
-	public static void main(String[] args) {
-		
+	public static void main(String[] args) {	
 		ChildA childA = new ChildA();
 		ChildB childB = new ChildB();
 		
@@ -549,29 +548,121 @@ public class Main {
 
 
 
+### 추상 클래스 (Abstract)
 
+* 사전적 의미
+  * 실체 간에 공통되는 특성을 추출한 것
+  * 구체적인 실체라기보단 실체들의 공통되는 특성을 가지고 있는 추상적인 것
 
+* 객체를 직접 생성할 수 있는 **실체 클래스의 공통적인 특성을 추출**해서 선언한 클래스
+* 추상 클래스와 실체 클래스는 상속 관계
+  * 부모 : 추상 클래스 / 자식 : 실체 클래스
+  * 실체 클래스는 추상 클래스의 필드와 메소드를 상속받고, 추가적인 필드와 메소드를 가질 수 있음
+* `abstract` 키워드 사용하여 선언
+* 추상 클래스의 용도
+  * 실체 클래스들의 공통된 필드와 메소드의 이름을 통일할 목적
+    * 동일한 데이터와 기능임에도 이름이 달라 객체마다 사용 방법이 달라지는 것을 방지
+  * 실체 클래스 작성 시 시간 절약
+    * 공통적인 필드와 메소드는 추상 클래스에 선언
+    * 다른 점만 실체 클래스에 선언
+* 추상 클래스의 특징
+  * 실체 클래스의 공통 필드와 메소드를 추출해 생성했기 때문에 **직접 객체 생성 불가**
+  * 즉, new 연산자를 사용해서 인스턴스 생성 불가 (부모 클래스로만 사용)
+* 추상 메소드와 오버라이딩
+  * 추상 클래스는 추상 메소드 선언 가능
+    * 메소드의 선언부만 있고, 메소드 실행 내용인 중괄호{ }가 없는 메소드
+    * 추상 메소드는 추상 클래스에서만 선언 가능
+  * 메소드의 선언만 통일화하고 실행 내용은 실체 클래스마다 달라야 하는 경우 사용
+    * 실체 클래스들이 가지는 메소드 실행 내용이 동일하다면 추상 클래스에 메소드 작성
+  * 추상 클래스 설계 시, 하위 클래스가 **반드시 실행 내용을 채우도록 강요**하고 싶은 메소드가 있는 경우, 해당 메소드를 추상 메소드로 선언
+    * 하위 클래스는 반드시 추상 메소드를 **재정의**해서 실행 내용을 작성해야 함
 
+```java
+public abstract class AbstAnimal {
+	
+	public String kind;
+	
+	public void breathe() {
+		System.out.println("숨쉬기");
+	}
+	
+	//추상 메소드
+	public abstract void sound();
+}
+```
 
+```java
+public class Dog extends AbstAnimal{
+	
+	public Dog() {
+		this.name = "강아지";
+	}
 
+	//추상 메소드 재정의
+	@Override
+	public void sound() {
+		System.out.println("멍멍");
+	}
+}
+```
 
+```java
+public class Cat extends AbstAnimal{
 
+	public Cat() {
+		this.name = "고양이";
+	}
+	
+	//추상 메소드 재정의
+	@Override
+	public void sound() {
+		System.out.println("야옹");
+	}
+}
+```
 
+```java
+public class Main {
+	
+	public static void main(String[] args) {
+		
+		Dog dog = new Dog();
+		Cat cat = new Cat();
+		
+		dog.sound();
+		cat.sound();
+		System.out.println("----------------");
+		
+		//변수의 자동 타입 변환
+		AbstAnimal abstAnimal = new Dog();
+		abstAnimal.sound();
+		
+		abstAnimal = new Cat();
+		abstAnimal.sound();
+		System.out.println("----------------");
+		
+		//메소드의 다형성
+		animalSound(new Dog());
+		animalSound(new Cat());
+	}
 
+	public static void animalSound(AbstAnimal abstAnimal) {
+		abstAnimal.sound();
+	}
 
+}
+```
 
-
-
-
-
-
-
-
-
-
-
-
-
+```text
+멍멍
+야옹
+----------------
+멍멍
+야옹
+----------------
+멍멍
+야옹
+```
 
 
 
