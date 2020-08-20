@@ -1,5 +1,10 @@
 # 클래스
 
+* 신용권, 『이것이 자바다 1,2』, 한빛미디어(2016)
+* [인프런, 자바 프로그래밍 입문 강좌]([https://www.inflearn.com/course/%EC%8B%A4%EC%A0%84-%EC%9E%90%EB%B0%94_java-renew#](https://www.inflearn.com/course/실전-자바_java-renew#))
+
+
+
 ### 목차
 
 * 객체지향 프로그래밍(OOP)
@@ -424,10 +429,3 @@ public class SingletonEx{
   * 객체 외부에서 객체의 필드값을 사용하기 부적절할 때 Getter 메소드로 필드값 가공하여 외부로 전달
 * Setter
   * 외부에서 데이터에 접근할 수 없도록 막고, 메소드는 공개하여 외부에서 메소드를 통해 데이터에 접근하도록 유도할 때 사용하는 메소드
-
-
-
-## Reference
-
-* **신용권, 『이것이 자바다 1,2』, 한빛미디어(2016)**
-* [인프런, 자바 프로그래밍 입문 강좌]([https://www.inflearn.com/course/%EC%8B%A4%EC%A0%84-%EC%9E%90%EB%B0%94_java-renew#](https://www.inflearn.com/course/실전-자바_java-renew#))
