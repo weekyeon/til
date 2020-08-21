@@ -37,7 +37,10 @@
 ### 클래스 상속
 
 * 부모 클래스가 상속할 자식 클래스를 선택하는 것이 아닌, **자식 클래스가 상속 받을 부모 클래스를 선택**
+  
   * 즉, 자식 클래스를 생성하려면 부모 클래스가 먼저 생성되어야 함
+  
+  
 
 ```java
 public class Parent {
@@ -95,6 +98,8 @@ public class Main {
 
   * super(매개값)는 반드시 자식 생성자 첫 줄에 위치
 
+  
+  
   ```java
   public class People{
       public String name;
@@ -104,9 +109,9 @@ public class Main {
           this.name = name;
           this.ssn = ssn;
       }
-  }
+}
   ```
-
+  
   ```java
   public class Student extends People{
       public int studentNum;
@@ -115,9 +120,9 @@ public class Main {
           super(name, ssn); //부모 생성자 호출
           this.studentNum = studentNum;
       }
-  }
+}
   ```
-
+  
   ```java
   public class StudentEx{
       public static void main(String[] args){
@@ -132,9 +137,9 @@ public class Main {
           System.out.println("num : "+student.studentNum);
           
       }
-  }
+}
   ```
-
+  
   ```text
   name : 홍길동
   ssn : 123456-1234567
@@ -164,14 +169,16 @@ public class Main {
   * 자식 클래스에서 오버라이딩된 부모 클래스의 메소드를 호출해야 할 때, 명시적으로 super 키워드 사용하여 부모 메소드 호출 가능
   * super는 부모 객체를 참조하고 있기 때문에 부모 메소드에 직접 접근할 수 있음
 
+  
+  
   ```java
   public class Airplane {
   	public void land() { System.out.println("착륙"); }	
   	public void fly() { System.out.println("일반 비행"); }
   	public void takeOff() { System.out.println("이륙"); }
-  }
+}
   ```
-
+  
   ```java
   public class SupersonicAirplane extends Airplane{
   	public static final int NORMAL = 1;
@@ -184,9 +191,9 @@ public class Main {
   		if(flyMode == SUPERSONIC) System.out.println("초음속 비행");
   		else super.fly(); //부모 클래스의 fly() 메소드 호출
   	}
-  }
+}
   ```
-
+  
   ```java
   public class Main {
   	public static void main(String[] args) {
@@ -205,17 +212,17 @@ public class Main {
   		supersonicAirplane.land();
   		
   	}
-  }
+}
   ```
-
+  
   ```text
   착륙
   일반 비행
   초음속 비행
   일반 비행
-  이륙
+이륙
   ```
-
+  
   
 
 ### final 클래스와 final 메소드
@@ -256,15 +263,20 @@ public class Main {
 
   * 프로그램 실행 도중에 자동적으로 타입 변환이 일어나는 것
   * 자동 타입 변환이 일어나는 조건
+    
     * `Parent parent = new Child();`
   * 자식은 부모의 특징과 기능을 상속받기 때문에 부모와 동일하게 취급될 수 있음
   * 상속 계층에서 상위 타입이라면 자동 타입 변환 가능
+    
     * 바로 위의 부모가 아니어도 된다는 뜻
   * 부모 타입으로 자동 타입 변환된 이후
     * 부모 클래스에 선언된 필드와 메소드만 접근 가능
     * 변수는 자식 객체를 참조하지 않지만, 변수로 접근 가능한 멤버는 부모 클래스 멤버로만 한정
     * *예외*
+      
       * 메소드가 자식 클래스에서 오버라이딩 되었다면, 자식 클래스의 메소드가 대신 호출
+      
+      
 
   ```java
   public class Parent {
@@ -303,6 +315,8 @@ public class Main {
   부모 클래스 메소드 2 --> 자식 클래스에서 재정의
   ```
 
+  
+
 * 필드의 다형성
 
   * 필드 타입은 변함 없음
@@ -315,6 +329,8 @@ public class Main {
       * 부모 클래스를 상속하는 자식 클래스는 부모가 가지고 있는 필드와 메소드를 가지고 있으니 사용 방법 동일
       * 자식 클래스는 부모 메소드 재정의를 통해 메소드의 실행 내용을 변경하여 더 우수한 실행 결과가 나오게 할 수 있음
       * 자식 타입을 부모 타입으로 변환 가능
+      
+      
 
   ```java
   public class Tire {
@@ -471,12 +487,16 @@ public class Main {
   ================================
   ```
 
+  
+
 * 매개 변수의 다형성
 
   * 매개값으로 **어떤 자식 객체가 제공되느냐**에 따라 메소드의 실행 결과는 다양해질 수 있음
   * 자동 타입 변환은 주로 메소드 호출 시 많이 발생함
   * 매개 변수 타입이 클래스일 경우, 해당 클래스의 객체뿐 아니라 **자식 객체까지도** 매개값으로 사용 가능
   * 자식 객체가 부모 메소드를 재정의했다면, 메소드 내부에서 오버라이딩된 메소드를 호출함으로써 메소드 실행 결과 다양해짐
+
+  
 
   ```java
   public class Vehicle {
@@ -538,6 +558,8 @@ public class Main {
   택시가 달립니다
   ```
 
+  
+
 * 강제 타입 변환(Casting)
 
   * 부모 타입을 자식 타입으로 변환하는 것
@@ -577,9 +599,13 @@ public class Main {
     * 메소드의 선언부만 있고, 메소드 실행 내용인 중괄호{ }가 없는 메소드
     * 추상 메소드는 추상 클래스에서만 선언 가능
   * 메소드의 선언만 통일화하고 실행 내용은 실체 클래스마다 달라야 하는 경우 사용
+    
     * 실체 클래스들이 가지는 메소드 실행 내용이 동일하다면 추상 클래스에 메소드 작성
   * 추상 클래스 설계 시, 하위 클래스가 **반드시 실행 내용을 채우도록 강요**하고 싶은 메소드가 있는 경우, 해당 메소드를 추상 메소드로 선언
+    
     * 하위 클래스는 반드시 추상 메소드를 **재정의**해서 실행 내용을 작성해야 함
+    
+    
 
 ```java
 public abstract class AbstAnimal {

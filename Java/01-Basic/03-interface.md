@@ -9,7 +9,7 @@
 * 인터페이스
 * 인터페이스 구성 멤버
 * 구현 객체와 구현 클래스
-* 익명 구현 객체 (Anonymouse Class)
+* 익명 구현 객체 (Anonymous Class)
 * 다중 인터페이스 구현 클래스
 * 타입 변환과 다형성
 * 인터페이스 상속
@@ -44,6 +44,8 @@
 * 객체로 생성할 수 없기 때문에 **생성자를 가질 수 없음**
 * 자바 8부터 디폴트 메소드와 정적 메소드도 선언 가능
 
+
+
 ```java
 public interface InterfaceName{
     //상수
@@ -59,6 +61,8 @@ public interface InterfaceName{
     static 타입 메소드명(매개변수){ ... }
 }
 ```
+
+
 
 * 상수 필드
 
@@ -79,10 +83,14 @@ public interface InterfaceName{
   * 인터페이스에 선언된 추상 메소드는 모두 `public abstract` 특성
   * 구현 객체가 인터페이스 타입에 대입되면, 인터페이스에 선언된 추상 메소드를 개발 코드에서 호출 가능
 
+  
+
   ```JAVA
   InterfaceEx interfaceEx = new Concrete();
   interfaceEx.exMethod();
   ```
+
+  
 
 * 디폴트 메소드
 
@@ -120,17 +128,20 @@ public interface InterfaceName{
     * 즉, 실체 메소드 작성 시 public 보다 낮은 접근 제한으로 작성 불가
     * public 생략 시 컴파일 에러 발생
   * 구현 클래스가 실체 메소드를 작성하지 않으면, 구현 클래스는 **자동적으로 추상 클래스**가 됨
-    * 선언부에 abstract 키워드 추가 필요
-
+    
+  * 선언부에 abstract 키워드 추가 필요
+    
+    
+  
   ```java
   public class Concrete implements InterfaceEx{
-      //인터페이스에 선언된 추상 메소드의 실체 메소드 선언
+    //인터페이스에 선언된 추상 메소드의 실체 메소드 선언
   }
   ```
-
+  
   
 
-### 익명 구현 객체 (Anonymouse Class)
+### 익명 구현 객체 (Anonymous Class)
 
 * 일회성의 구현 객체를 만들기 위해 구현 클래스를 만들어 사용하는 것은 비효율적
   * 보통은 클래스 재사용을 위해 구현 클래스를 만들어 사용함
@@ -139,7 +150,10 @@ public interface InterfaceName{
 * 자바 8에서 지원하는 람다식은 인터페이스의 익명 구현 객체를 만듦
 * 익명 구현 객체에 추가적으로 필드와 메소드를 선언할 수 있지만, 익명 객체 안에서만 사용할 수 있고 인터페이스 변수로 접근 불가
 * 익명 구현 객체 작성 시 주의할 점
+  
   * 하나의 실행문이므로 끝에는 세미콜론(;)을 반드시 붙여야 함
+  
+  
 
 ```java
 인터페이스 변수 = new 인터페이스(){
@@ -148,7 +162,7 @@ public interface InterfaceName{
 ```
 
 ```java
-public class AnonymouseEx{
+public class AnonymousEx{
     public static void main(String[] args){
         InterfaceEx interfaceEx = new InterfaceEx(){
             public void funcA(){ /* 실행문 */ }
@@ -166,6 +180,8 @@ public class AnonymouseEx{
 * 객체는 다수의 인터페이스 타입으로 사용 가능
 * 다중 인터페이스 구현한 경우, 구현 클래스는 모든 인터페이스와 추상 메소드에 대해 실체 메소드 작성 필요
 * 만약, 하나라도 없으면 추상 클래스로 선언해야 함
+
+
 
 ```java
 public class Concrete implements InterfaceEx1, InterfaceEx2{
@@ -193,9 +209,13 @@ public class Concrete implements InterfaceEx1, InterfaceEx2{
   * 하지만 B 클래스의 메소드 선언부는 A 클래스의 메소드 선언부와 다름
   * 어쩔 수 없이 A 클래스의 메소드가 사용된 곳을 찾아 B 클래스의 메소드로 변경해야 함
   * 만약, A 클래스와 B 클래스의 메소드 선언부가 동일하다면?
+    
     * 메소드 호출 방법이 동일하므로 메소드 호출 코드는 수정할 필요 없이 객체 생성 부분만 A에서 B로 바꾸면 됨
   * 문제는 A, B 클래스를 설계할 때 메소드 선언부를 완전히 동일하게 설계할 수 있는지?
+    
     * 인터페이스를 작성하고 A, B 클래스는 구현 클래스로 작성하면 됨
+    
+    
 
   ```JAVA
   public interface InterfaceEx {
@@ -262,6 +282,8 @@ public class Concrete implements InterfaceEx1, InterfaceEx2{
   B 클래스의 funcB
   ```
 
+  
+
 * 자동 타입 변환 (Promotion)
 
   * 구현 객체가 인터페이스 타입으로 변환되는 것
@@ -279,6 +301,8 @@ public class Concrete implements InterfaceEx1, InterfaceEx2{
 
   * 상속에서는 매개 변수를 부모 타입으로 선언하고 호출 시 자식 객체를 대입
   * 인터페이스에서는 매개 변수를 인터페이스 타입으로 선언하고 호출 시 구현 객체 대입
+
+  
 
   ```java
   public interface Vehicle {
@@ -328,6 +352,8 @@ public class Concrete implements InterfaceEx1, InterfaceEx2{
   }
   ```
 
+  
+
 * 강제 타입 변환 (Casting)
 
   * 구현 객체가 인터페이스 타입으로 자동 변환 시, 인터페이스에 선언된 메소드만 사용 가능함
@@ -356,6 +382,8 @@ public class Concrete implements InterfaceEx1, InterfaceEx2{
   * 기존 인터페이스의 이름과 추상 메소드 변경 없이 디폴트 메소드만 추가 가능
   * 즉, 이전에 개발한 구현 클래스를 그대로 사용할 수 있으면서 새로운 클래스 활용 가능
 * 디폴트 메소드는 **추상 메소드가 아니기 때문에 구현 클래스에서 실체 메소드 작성 필요 없음**
+
+
 
 ```java
 public interface InterfaceEx {
@@ -414,6 +442,8 @@ InterfaceEx 디폴트 메소드
 새로운 클래스 디폴트 메소드 재정의
 ```
 
+
+
 * 디폴트 메소드가 있는 인터페이스 상속
 
   * 부모 인터페이스에 디폴트 메소드가 정의되어 있을 경우, 자식 인터페이스에서 이를 활용하는 방법
@@ -433,9 +463,15 @@ InterfaceEx 디폴트 메소드
   }
   ```
 
+  
+
   * `1` 디폴트 메소드를 단순히 상속만 받음
+    
     * 구현 클래스는 부모와 자식 인터페이스의 실체 메소드를 가지고 있어야 함
+    
     * 구현 클래스는 부모 인터페이스의 디폴트 메소드 호출 가능
+    
+      
 
   ```java
   public class Concrete implements ChildInterface{
@@ -468,8 +504,13 @@ InterfaceEx 디폴트 메소드
   구현 클래스의 parentMethod
   ```
 
+  
+
   * `2` 디폴트 메소드를 재정의해서 실행 내용 변경
+    
     * 자식 인터페이스는 부모 인터페이스의 디폴트 메소드를 재정의
+    
+    
 
   ```java
   public interface ChildInterface extends ParentInterface{
@@ -487,9 +528,14 @@ InterfaceEx 디폴트 메소드
   구현 클래스의 parentMethod
   ```
 
+  
+
   * `3` 디폴트 메소드를 추상 메소드로 재선언
+    
     * 부모 인터페이스의 디폴트 메소드를 추상 메소드로 재선언
     * 자식 인터페이스를 구현하는 구현 클래스는 모든 실체 메소드를 가지고 있어야 함
+    
+    
 
   ```java
   public interface ChildInterface extends ParentInterface{
@@ -522,4 +568,3 @@ InterfaceEx 디폴트 메소드
   ```
 
   
-

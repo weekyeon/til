@@ -67,6 +67,8 @@
 
 * 구성요소
 
+
+
 ```java
 public class ClassName{
     //필드 : 객체 데이터 저장
@@ -227,6 +229,8 @@ public class ClassName{
     * 인스턴스 필드 선언 : 객체마다 가지고 있어야 할 데이터
     * 정적 필드 선언 : 객체마다 가질 필요가 없는 **공용** 데이터
 
+    
+
     ```java
     public class Calc{
         
@@ -241,6 +245,8 @@ public class ClassName{
     * 인스턴스 메소드 선언 : 인스턴스 필드를 **이용**해서 실행해야 하는 메소드
     * 정적 메소드 선언 : 인스턴스 필드를 **이용하지 않고** 실행하는 메소드
 
+    
+    
     ```java
     public class Calc{
         
@@ -266,6 +272,8 @@ public class ClassName{
   * 클래스가 메모리로 로딩되면 정적 멤버 바로 사용 가능
   * `클래스명.필드` 또는 `클래스명.메소드`
 
+  
+
   ```java
   public class Calc{
       
@@ -290,6 +298,8 @@ public class ClassName{
       }
   }
   ```
+
+  
 
 * 정적 초기화 블록
 
@@ -317,6 +327,8 @@ public class ClassName{
   * 생성자를 호출한 만큼 객체가 생성되기 때문
   * 생성자 앞에 private 접근제한자 지정
 * 클래스 내부에서는 new 연산자로 생성자 호출 가능
+
+
 
 ```java
 public class Singleton{
