@@ -12,6 +12,8 @@
 
 * [클래스](https://github.com/weekyeon/til/blob/master/Java/01-Basic/01-class.md)
 * [상속](https://github.com/weekyeon/til/blob/master/Java/01-Basic/02-inheritance.md)
+* [인터페이스](https://github.com/weekyeon/til/blob/master/Java/01-Basic/03-interface.md)
+* [중첩 클래스와 중첩 인터페이스](https://github.com/weekyeon/til/blob/master/Java/01-Basic/04-nested-class-interface.md)
 
 
 
