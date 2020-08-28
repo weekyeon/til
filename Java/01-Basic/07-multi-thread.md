@@ -64,7 +64,7 @@
   * 필요에 따라 작업 스레드들을 만들어 병렬로 코드 실행 가능
     * 즉, 멀티 스레드를 생성해서 멀티 태스킹 수행
 
-  ![메인 스레드](https://github.com/weekyeon/til/blob/master/Java/img/java-thread1.png)
+  ![메인 스레드](https://github.com/weekyeon/til/blob/master/Java/img/java-thread2.png)
 
   * 작업 스레드 1을 생성하고 실행한 다음, 작업 스레드 2를 생성하고 실행함
   * 싱글 스레드 애플리케이션에서는 메인 스레드 종료 시 프로세스도 종료
