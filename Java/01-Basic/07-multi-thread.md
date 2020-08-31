@@ -385,14 +385,14 @@
 
 * `getState()` : 스레드 상태에 따라 Thread.State 열거 상수 리턴하는 메소드
 
-  |   상태    |  열거 상수   | 설명                                                  |
-  | :-------: | :----------: | ----------------------------------------------------- |
-  | 객체 생성 |     NEW      | 스레드 객체 생성 O<br>start() 메소드 호출 X           |
-  | 실행 대기 |   RUNNABLE   | 실행 상태로 언제든 갈 수 있는 상태                    |
-  | 일시 정지 |    WATING    | 다른 스레드가 통지할 때까지 기다리는 상태             |
-  |           | TIMED_WATING | 주어진 시간 동안 기다리는 상태                        |
-  |           |   BLOCKED    | 사용하고자 하는 객체의 락이 풀릴 때까지 기다리는 상태 |
-  |   종료    |  TERMINATED  | 실행을 마친 상태                                      |
+|   상태    |  열거 상수   | 설명                                                  |
+| :-------: | :----------: | ----------------------------------------------------- |
+| 객체 생성 |     NEW      | 스레드 객체 생성 O<br>start() 메소드 호출 X           |
+| 실행 대기 |   RUNNABLE   | 실행 상태로 언제든 갈 수 있는 상태                    |
+| 일시 정지 |    WATING    | 다른 스레드가 통지할 때까지 기다리는 상태             |
+|           | TIMED_WATING | 주어진 시간 동안 기다리는 상태                        |
+|           |   BLOCKED    | 사용하고자 하는 객체의 락이 풀릴 때까지 기다리는 상태 |
+|   종료    |  TERMINATED  | 실행을 마친 상태                                      |
 
 
 
@@ -725,21 +725,20 @@ Map<Thread, StackTraceElement[]> map = Thread.getAllStackTraces();
 
 
 * 스레드 그룹 생성
-
-  ```java
-  ThreadGroup tg = new ThreadGroup(String name);
-  ThreadGroup tg = new ThreadGroup(ThreadGroup parent, String name);
-  ```
-
   * 두 생성자 중 하나 이용해서 생성
   * 부모 스레드 그룹 지정하지 않으면 현재 스레드가 속한 그룹의 하위 그룹으로 생성됨
   * 새로운 스레드 그룹 생성 후, 이 그룹에 스레드 포함시키려면 Thread 객체 생성 시 생성자 매개값으로 스레드 그룹 지정
+
+```java
+ThreadGroup tg = new ThreadGroup(String name);
+ThreadGroup tg = new ThreadGroup(ThreadGroup parent, String name);
+```
 
 
 
 ### 스레드 풀
 
-
+* 집중력이 떨어졌으니 내일 하자,,!
 
 
 
