@@ -145,6 +145,7 @@ public class Main {
         Cat maru = navi;
         maru.setName("마루");
         navi.setAge(new Age(2018));
+        
         System.out.println("---------- 얕은 복사 ----------");
         System.out.println(navi.getName()+"는 "+navi.getAge().getYear()+"년생 (Hash code : "+navi.hashCode()+")");
         System.out.println(maru.getName()+"는 "+maru.getAge().getYear()+"년생 (Hash code : "+maru.hashCode()+")");
@@ -194,6 +195,7 @@ public class Main {
         Cat sandy = navi.catCopy();
         sandy.setName("샌디");
         navi.setAge(new Age(2019));
+        
         System.out.println("---------- 깊은 복사 ----------");
         System.out.println(navi.getName()+"는 "+navi.getAge().getYear()+"년생 (Hash code : "+navi.hashCode()+")");
         System.out.println(sandy.getName()+"는 "+sandy.getAge().getYear()+"년생 (Hash code : "+sandy.hashCode()+")");
@@ -210,7 +212,7 @@ public class Main {
 
 
 * 주의할 점
-  * Cloneable 인터페이스를 이용하여 깊은 복사를 할 때, **객체에 참조타입 멤버가 있으면 해당 객체는 얕은 복사**가 됨
+  * Cloneable 인터페이스를 이용하여 깊은 복사를 할 때, **객체에 참조타입 멤버가 있으면 해당 멤버는 얕은 복사**가 됨
 
 ```java
 public class Main {
@@ -224,9 +226,10 @@ public class Main {
         Cat rami = navi.catCopy();
         rami.setName("라미");
         rami.getAge().setYear(2020);
+        
         System.out.println("----- 깊은 복사 시 주의할 점 -----");
-        System.out.println(navi.getName()+"는 "+navi.getAge().getYear()+"년생 (Hash code : "+navi.hashCode()+")");
-        System.out.println(rami.getName()+"는 "+rami.getAge().getYear()+"년생 (Hash code : "+rami.hashCode()+")");
+        System.out.println(navi.getName()+"는 "+navi.getAge().getYear()+"년생");
+        System.out.println(rami.getName()+"는 "+rami.getAge().getYear()+"년생");
         
         System.out.println("-----------------------------------");
         System.out.println("navi.hashCode() : "+navi.hashCode());
@@ -240,8 +243,8 @@ public class Main {
 
 ```text
 ----- 깊은 복사 시 주의할 점 -----
-나비는 2020년생 (Hash code : 460141958)
-라미는 2020년생 (Hash code : 1163157884)
+나비는 2020년생
+라미는 2020년생
 -----------------------------------
 navi.hashCode() : 460141958
 rami.hashCode() : 1956725890
@@ -275,8 +278,8 @@ public class Cat implements Cloneable{
 
 ```text
 ----- 깊은 복사 시 주의할 점 -----
-나비는 2017년생 (Hash code : 460141958)
-라미는 2020년생 (Hash code : 1163157884)
+나비는 2017년생
+라미는 2020년생
 -----------------------------------
 navi.hashCode() : 460141958
 rami.hashCode() : 1956725890
