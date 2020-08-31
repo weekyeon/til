@@ -35,7 +35,7 @@
 
 #### :pushpin: Design Pattern
 
-&nbsp; &nbsp; :open_file_folder: **생성 패턴(Creational Pattern)**
+##### &nbsp; &nbsp; :open_file_folder: 생성 패턴(Creational Pattern)
 
 * [팩토리 메소드 패턴 (Factory Method Pattern)](https://github.com/weekyeon/til/blob/master/Design-Pattern/04-template-factory-pattern.md)
 * [싱글톤 패턴 (Singleton Pattern)](https://github.com/weekyeon/til/blob/master/Design-Pattern/05-singleton-pattern.md)
@@ -44,13 +44,13 @@
 
 
 
-&nbsp; &nbsp; :open_file_folder: **구조 패턴(Structural Pattern)**
+##### &nbsp; &nbsp; :open_file_folder: 구조 패턴(Structural Pattern)
 
 * [어댑터 패턴 (Adapter Pattern)](https://github.com/weekyeon/til/blob/master/Design-Pattern/02-adapter-pattern.md)
 
 
 
-&nbsp; &nbsp; :open_file_folder: **행위 패턴(Behavioral Pattern)**
+##### &nbsp; &nbsp; :open_file_folder: 행위 패턴(Behavioral Pattern)
 
 * [스트래티지 패턴 (Strategy Pattern)](https://github.com/weekyeon/til/blob/master/Design-Pattern/01-strategy-pattern.md)
 * [템플릿 메소드 패턴 (Template Method Pattern)](https://github.com/weekyeon/til/blob/master/Design-Pattern/03-template-mathod-pattern.md)
