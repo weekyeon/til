@@ -42,7 +42,7 @@
 
 ##### &nbsp; &nbsp; :open_file_folder: Basic
 
-* [About Node.js](https://github.com/weekyeon/til/blob/master/Nodejs/01-Basic/01-introduction.md)
+* [About Node.js](https://github.com/weekyeon/til/blob/master/NodeJS/01-Basic/01-introduction.md)
 
 
 
