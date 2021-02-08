@@ -83,4 +83,5 @@
 ##### &nbsp; &nbsp; :open_file_folder: :smiley:
 
 * [애자일(Agile) 방법론, 스크럼(Scrum)](https://github.com/weekyeon/til/blob/master/Etc/01-agile-scrum.md)
+* [VSCode Shortcut](https://github.com/weekyeon/til/blob/master/Etc/02-vscode-shortcut.md)
 
